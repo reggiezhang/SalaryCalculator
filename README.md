@@ -20,3 +20,6 @@
 ###运行与测试
 1. 访问链接：https://sitingren.github.io/SalaryCalculator/
 2. 下载Repository，加压后，开启一个服务器（如 $python -m SimpleHTTPServer），然后访问index.html文件。
+
+###扩展性
+从文件中读取的数据都可以根据实际情况更改，比如绩效工资标准可以不限于“A”，“B”，“C”，“D”，可以添加“E”，“F”等更多评分，页面中绩效工资标准表仍然可以正常显示，同时添加新员工信息的“绩效评分”下拉菜单中的选项也会相应改变。
