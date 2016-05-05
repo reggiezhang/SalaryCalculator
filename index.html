@@ -1,26 +1,112 @@
+
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
         <title>Salary Calculator</title>
-        <script src="//cdn.bootcss.com/PapaParse/4.1.2/papaparse.min.js"></script>
-	    
+        <script src="//cdn.bootcss.com/jquery/3.0.0-beta1/jquery.min.js"></script>
+        <script src="//cdn.bootcss.com/PapaParse/4.1.2/papaparse.js"></script>
+        <script src="//cdn.bootcss.com/FileSaver.js/2014-11-29/FileSaver.js"></script>
+
+        
         <style>
           html,body{
               font-size: 12px;
               font-family: 'Microsoft Yahei',Tahoma,Verdana,simsun,sans-serif;
           }
-          table {width: 85%;margin: 30px auto;}
+          table {width: 55%;margin: 30px auto;}
+          
+          #BgDiv{background-color:#aedad2; position:absolute; z-index:99; left:0; top:0; display:none; width:100%; height:1000px;opacity:0.7;filter: alpha(opacity=70);-moz-opacity: 0.7;}
+          #showdiv{position:absolute;width:480px; height:440px; left:50%; top:50%; margin-left:-240px; margin-top:-220px; height:auto; z-index:100;background-color:#fff; display:none;}
         </style>
     </head>
     
     <body>
+        <center><h1>收入计算器</h1></center>
+        <div id="BgDiv"></div>
 
-		
-		    <!-- Div which will hold the Javascript Output -->
-		    <div id="js-output">
-		    </div>
-		
-		    <script type="text/javascript" src="jumpjump.js"></script>
+        <div id="showdiv"></div>
+        
+        <table id="table_staff" border="1">
+            <caption>员工名单</caption>
+            <thead>
+                <tr>
+                    <th>员工姓名</th>
+                    <th>岗位工资</th>
+                    <th>绩效评分</th>
+                    <th>住房公积金比例</th>
+                    <th>工资单</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                <td><input type="text" name="sname" id="sname" ></td>
+                <td><input type="number" name="post_wage" id="post_wage" min="0" value="0"  step="0.01"/></td>
+                <td><select id="performance">
+                    
+                  </select></td>
+                <td><input type="number" name="housing_rate" id="housing_rate" min="0" max="0.08" value="0" step="0.01"/></td>
+                <td><center><input type="submit" value="添加" id="add_staff"  onclick="javascript:addStaffBtnOnclick();" /></center></td></tr>
+            </tbody>
+        </table>
+        <center>
+            <input type="button" name="button" value="  下载收入详情csv文件  " 
+                 onclick="javascript:saveSalaryBtnOnclick();"/>
+        </center>
+        <br><hr width="100%" color=#b496cd SIZE=2 align=left>
+        <h2 style="margin: 0% 0% 0% 17%">计算标准:</h2>
+        <table id="table_fiveInsurances" border="1">
+            <caption>五险费率</caption>
+            <thead>
+                <tr>
+                    <th>类型</th>
+                    <th>养老保险</th>
+                    <th>医疗保险</th>
+                    <th>失业保险</th>
+                    <th>生育保险</th>
+                    <th>工伤保险</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        
+        <table id="table_tax" border="1">
+            <caption>个人所得税--税率表</caption>
+            <thead>
+                <tr>
+                    <th>应纳税收入累进区间</th>
+                    <th>税率</th>
+                    <th>扣除数</th>
+                </tr>
+                
+            </thead>
+            <tbody>
+            </tbody>
+            
+        </table>
+        
+        <table id="table_performance" border="1">
+            <caption>绩效工资标准</caption>
+            <thead>
+                
+            </thead>
+            <tbody>
+            </tbody>
+            
+        </table>
+        
+        <table id="table_avgIncome" border="1">
+            <caption>五险一金汇缴基数</caption>
+            <thead>
+                
+            </thead>
+            <tbody>
+            </tbody>
+            
+        </table>
+        <script type="text/javascript" src="./js/staff.js"></script>
+        <script type="text/javascript" src="./js/payroll.js"></script>
+        <script type="text/javascript" src="./js/calculator.js"></script>
     </body>
 </html>
